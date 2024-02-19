@@ -1,6 +1,7 @@
 FROM phpdockerio/php:8.3-fpm
 
 RUN apt-get update \
+    && apt-get install -y apt-transport-https \
     && apt-get -y --no-install-recommends install \
     php8.3-dev \
     php8.3-gd \
