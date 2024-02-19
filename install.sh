@@ -78,7 +78,7 @@ then
     systemctl enable pure-ftpd.service > /dev/null 2>&1 && \
     cd /etc/pure-ftpd/ && \
     mv pure-ftpd.conf pure-ftpd.conf.old && \
-    wget https://raw.githubusercontent.com/darbit-ru/bitrix_docker/master/pure-ftpd.conf > /dev/null 2>&1 && \
+    wget https://raw.githubusercontent.com/KwaziCoder/bitrixdocker/master/pure-ftpd.conf > /dev/null 2>&1 && \
     ufw allow from any to any port 20,21,30000:50000 proto tcp > /dev/null 2>&1 && \
     touch /etc/pure-ftpd/pureftpd.passwd && \
     pure-pw mkdb > /dev/null 2>&1 && \
@@ -97,7 +97,7 @@ then
   fi
 
   # downloading docker from git source
-  DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrix_docker
+  DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrixdocker
   if [ ! -d "$DOCKER_FOLDER_PATH" ]
   then
     echo -e "\e[33mDocker containers is not installed. Installation starting... \e[39m\n"
@@ -233,7 +233,7 @@ then
         then
             docker exec -it darbit_docker_webserver /bin/bash -c "certbot --nginx -d $SITE_NAME -d www.$SITE_NAME"
 
-            DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrix_docker
+            DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrixdocker
             mv $DOCKER_FOLDER_PATH/nginx/conf/conf.d/$SITE_NAME.conf $DOCKER_FOLDER_PATH/nginx/conf/conf.d/$SITE_NAME.conf.old && \
             docker cp darbit_docker_webserver:/etc/nginx/conf.d/$SITE_NAME.conf $DOCKER_FOLDER_PATH/nginx/conf/conf.d/ && \
             docker cp darbit_docker_webserver:/etc/letsencrypt/ $DOCKER_FOLDER_PATH/nginx/
@@ -362,7 +362,7 @@ then
         then
             docker exec -it darbit_docker_webserver /bin/bash -c "certbot --nginx -d $SITE_NAME -d www.$SITE_NAME"
 
-            DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrix_docker
+            DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrixdocker
             mv $DOCKER_FOLDER_PATH/nginx/conf/conf.d/$SITE_NAME.conf $DOCKER_FOLDER_PATH/nginx/conf/conf.d/$SITE_NAME.conf.old && \
             docker cp darbit_docker_webserver:/etc/nginx/conf.d/$SITE_NAME.conf $DOCKER_FOLDER_PATH/nginx/conf/conf.d/ && \
             docker cp darbit_docker_webserver:/etc/letsencrypt/ $DOCKER_FOLDER_PATH/nginx/
@@ -413,7 +413,7 @@ then
     rm -rf $WEBSITE_FILES_PATH
     echo -e "\e[32mWebsite folder removed \e[39m\n"
 
-    DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrix_docker
+    DOCKER_FOLDER_PATH=$DOCKER_PATH/bitrixdocker
 
     docker exec -it darbit_docker_webserver /bin/bash -c "certbot delete --cert-name $SITE_NAME" && \
     docker cp darbit_docker_webserver:/etc/letsencrypt/ $DOCKER_FOLDER_PATH/nginx/
