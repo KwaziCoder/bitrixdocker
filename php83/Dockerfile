@@ -1,20 +1,20 @@
-FROM phpdockerio/php:8.3-fpm
+FROM php:8.2-fpm
 
 RUN apt-get update \
     && apt-get install -y apt-transport-https \
     && apt-get -y --no-install-recommends install \
-    php8.3-dev \
-    php8.3-gd \
-    php8.3-imagick \
-    php8.3-intl \
-    php8.3-interbase \
-    php8.3-mbstring \
-    php8.3-memcache \
-    php8.3-memcached \
-    php8.3-mysql \
-    php8.3-opcache \
-    php8.3-soap \
-    php8.3-zip \
+    php8.2-dev \
+    php8.2-gd \
+    php8.2-imagick \
+    php8.2-intl \
+    php8.2-interbase \
+    php8.2-mbstring \
+    php8.2-memcache \
+    php8.2-memcached \
+    php8.2-mysql \
+    php8.2-opcache \
+    php8.2-soap \
+    php8.2-zip \
     php-pear libmcrypt-dev gcc make autoconf libc-dev pkg-config \
     && pecl install mcrypt-1.0.7 \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
