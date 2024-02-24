@@ -2,6 +2,7 @@ FROM phpdockerio/php:8.2-fpm
 
 RUN apt-get update \
     && apt-get install -y apt-transport-https \
+    && apt-get install -y apt-utils \
     && apt-get -y --no-install-recommends install \
     php8.2-gd \
     php8.2-imagick \
