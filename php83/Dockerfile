@@ -30,7 +30,7 @@ RUN apt-get update \
 COPY ./php.ini /etc/php/8.3/fpm/conf.d/90-php.ini
 COPY ./php.ini /etc/php/8.3/cli/conf.d/90-php.ini
 # disable xdebug by default as it affects performance badly
-COPY ./xdebug.ini /etc/php/8.3/mods-available/xdebug.ini
+#COPY ./xdebug.ini /etc/php/8.3/mods-available/xdebug.ini
 
 RUN usermod -u 1000 www-data
 RUN groupmod -g 1000 www-data
