@@ -111,11 +111,11 @@ then
     echo -e "\e[32mDone \e[39m\n"
 
     # chosing PHP version
-    echo -e "\e[33mSelect PHP version [5.6, 7.1, 7.4, 8.2]: \e[39m"
+    echo -e "\e[33mSelect PHP version [5.6, 7.1, 7.4, 8.3]: \e[39m"
     read PHP_VERSION
-    until [[ $PHP_VERSION != "5.6" || $PHP_VERSION != "7.1" || $PHP_VERSION != "7.4" || $PHP_VERSION != "8.2" ]]
+    until [[ $PHP_VERSION != "5.6" || $PHP_VERSION != "7.1" || $PHP_VERSION != "7.4" || $PHP_VERSION != "8.3" ]]
     do
-        echo -e "\e[33mSelect PHP version [5.6, 7.1, 7.4, 8.2]: \e[39m"
+        echo -e "\e[33mSelect PHP version [5.6, 7.1, 7.4, 8.3]: \e[39m"
         read PHP_VERSION
     done
     SELECTED_PHP_VERSION=php71
@@ -123,8 +123,8 @@ then
       SELECTED_PHP_VERSION=php56
     elif [[ $PHP_VERSION == "7.4" ]]; then
       SELECTED_PHP_VERSION=php74
-    elif [[ $PHP_VERSION == "8.2" ]]; then
-          SELECTED_PHP_VERSION=php82
+    elif [[ $PHP_VERSION == "8.3" ]]; then
+          SELECTED_PHP_VERSION=php83
     fi
     sed -i "s/#PHP_VERSION#/$SELECTED_PHP_VERSION/g" $DOCKER_FOLDER_PATH/.env
 
