@@ -1,0 +1,38 @@
+FROM phpdockerio/php:8.3-fpm
+
+RUN apt-get update \
+    && apt-get -y --no-install-recommends install \
+    php8.3-gd \
+    php8.3-imagick \
+    php8.3-interbase \
+    php8.3-intl \
+    php8.3-mbstring \
+    php8.3-memcache \
+    php8.3-memcached \
+    php8.3-mysql \
+    php8.3-opcache \
+    php8.3-soap \
+    php8.3-zip \
+    webp \
+    msmtp \
+    msmtp-mta \
+    sudo \
+    cron \
+    php-pear php8.3-dev libmcrypt-dev gcc make autoconf libc-dev pkg-config && pecl install mcrypt-1.0.7 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+
+# msmtp to allow email sending
+# msmtp-mta to allow sendmail usage with msmtp
+# sudo to allow create logfile with www-data user
+# cron to run cronjobs in a separate container
+
+# without this, php in the container won't work if you forget to mount 90-php.ini
+COPY ./php.ini /etc/php/8.3/fpm/conf.d/90-php.ini
+COPY ./php.ini /etc/php/8.3/cli/conf.d/90-php.ini
+# disable xdebug by default as it affects performance badly
+COPY ./xdebug.ini /etc/php/8.3/mods-available/xdebug.ini
+
+RUN usermod -u 1000 www-data
+RUN groupmod -g 1000 www-data
+
+EXPOSE 9000
