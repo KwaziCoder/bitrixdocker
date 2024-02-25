@@ -1,6 +1,6 @@
 FROM phpdockerio/php:8.3-fpm
 
-RUN apt-get update && apt-get upgrade \
+RUN apt-get update \
     && apt-get -y --no-install-recommends install \
     php8.3-gd \
     php8.3-imagick \
